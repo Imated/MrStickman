@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum PlayerState
 {
@@ -16,6 +17,7 @@ public enum PlayerDirection
 public class Player : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
+    [SerializeField] private Weapon currentWeapon;
 
     private Rigidbody2D _rb;
     private InputManager _inputManager;
@@ -24,11 +26,16 @@ public class Player : MonoBehaviour
     private PlayerState _state;
     private PlayerDirection _direction;
     
+    private Camera _camera;
+    private float _interactableTimer;
+
+    
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _inputManager = GetComponent<InputManager>();
         _anim = GetComponent<Animator>();
+        _camera = Camera.main;
     }
 
     private void FixedUpdate()
@@ -83,4 +90,26 @@ public class Player : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
     }
+    
+    private void Update()
+    {
+        Interact();
+        _interactableTimer -= Time.deltaTime;
+    }
+
+    void Interact()
+    {
+        if (_interactableTimer <= 0 && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            _interactableTimer = currentWeapon.cooldown;
+            var mouseWorldPos = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            var hitCollider = Physics2D.OverlapPoint(mouseWorldPos, LayerMask.GetMask("Interactable"));
+            if (hitCollider != null)
+            {
+                if (hitCollider.gameObject.TryGetComponent(out Breakable breakable))
+                    breakable.Damage(currentWeapon.damage);
+            }
+        }
+    }
+
 }
