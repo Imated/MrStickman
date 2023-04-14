@@ -23,7 +23,7 @@ public class StateController : MonoBehaviour
 
 
 
-    private bool _canBreak;
+    private bool _canBreak = false;
     private InputManager _input;
     
     public Rigidbody2D RB
@@ -130,7 +130,7 @@ public class StateController : MonoBehaviour
     {
         get
         {
-            return _input = Player.GetComponent<InputManager>();
+            return _inputManager.gameObject;
         }
     }
 
@@ -141,7 +141,8 @@ public class StateController : MonoBehaviour
         BreakState = new BreakState(this);
         FixState = new FixState(this);
         ChangeState(BreakState);
-        
+
+        _currentState = BreakState;
 
 
                        

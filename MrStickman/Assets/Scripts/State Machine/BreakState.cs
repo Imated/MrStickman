@@ -12,7 +12,8 @@ public class BreakState : State
 
     protected override void OnUpdate()
     {
-        if (sc.Input.GetMovementInput() != UnityEngine.Vector2.zero)
+        var inpValue = sc.Input.GetMovementInput();
+        if (inpValue != new UnityEngine.Vector2(0, 0))
         {
             sc.ChangeState(sc.MovementState);
         }
