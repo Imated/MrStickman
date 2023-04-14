@@ -5,18 +5,26 @@ public class BreakState : State
         
     }
 
-    public override void EnterState()
+    protected override void OnEnter()
     {
-        
+        sc.CanBreak = true;
     }
 
-    public override void UpdateState()
+    protected override void OnUpdate()
     {
-        
+        if (sc.Input.GetMovementInput() != UnityEngine.Vector2.zero)
+        {
+            sc.ChangeState(sc.MovementState);
+        }
     }
 
-    public override void ExitState()
+    protected override void OnInteract()
     {
-        
+
+    }
+
+    protected override void OnExit()
+    {
+
     }
 }
