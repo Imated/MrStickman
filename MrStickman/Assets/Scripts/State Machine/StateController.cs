@@ -130,7 +130,7 @@ public class StateController : MonoBehaviour
     {
         get
         {
-            return _inputManager.gameObject;
+            return _inputManager;
         }
     }
 
@@ -142,10 +142,7 @@ public class StateController : MonoBehaviour
         FixState = new FixState(this);
         ChangeState(BreakState);
 
-        _currentState = BreakState;
-
-
-                       
+        _currentState = BreakState;  
     }
     
     private void Update()
