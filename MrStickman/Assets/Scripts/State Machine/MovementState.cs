@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MovementState : State
 {
-    public MovementState(StateController sc) : base(sc) { 
-    
-    }
     protected override void OnEnter()
     {
-
+        
     }
 
-    protected override void OnUpdate()
+    protected override void OnFixedUpdate()
     {
         UpdatePlayerMovement();
     }
@@ -24,35 +20,35 @@ public class MovementState : State
         switch (h)
         {
             case > 0:
-                sc.PState = PlayerState.Walk;
-                sc.PDirec = PlayerDirection.Right;
+                sc.PlayerState = PlayerState.Walk;
+                sc.PlayerDirection = PlayerDirection.Right;
                 break;
             case < 0:
-                sc.PState = PlayerState.Walk;
-                sc.PDirec = PlayerDirection.Left;
+                sc.PlayerState = PlayerState.Walk;
+                sc.PlayerDirection = PlayerDirection.Left;
                 break;
             case 0:
-                sc.PState = PlayerState.Idle;
+                sc.PlayerState = PlayerState.Idle;
                 break;
         }
         UpdatePlayerAnimation();
-        sc.RB.velocity = new Vector2(h * 100, sc.RB.velocity.y);
+        sc.Rb.velocity = new Vector2(h * 100, sc.Rb.velocity.y);
     }
 
     void UpdatePlayerAnimation()
     {
-        switch (sc.PDirec)
+        switch (sc.PlayerDirection)
         {
             case PlayerDirection.Left:
-                sc.Player.transform.localScale = new Vector3(-1, 1, 1);
+                sc.player.transform.localScale = new Vector3(-1, 1, 1);
                 break;
             case PlayerDirection.Right:
-                sc.Player.transform.localScale = Vector3.one;
+                sc.player.transform.localScale = Vector3.one;
                 break;
             default:
                 throw new System.ArgumentOutOfRangeException();
         }
-        switch (sc.PState)
+        switch (sc.PlayerState)
         {
             case PlayerState.Idle:
                 sc.Anim.Play("PlayerIdle");
@@ -67,10 +63,10 @@ public class MovementState : State
 
     protected override void OnInteract()
     {
-        if (sc.InteractableTimer <= 0 && UnityEngine.InputSystem.Mouse.current.leftButton.wasPressedThisFrame)
+        if (sc.InteractableTimer <= 0)
         {
             sc.InteractableTimer = sc.CurrentWeapon.cooldown;
-            var mouseWorldPos = sc.Camera.ScreenToWorldPoint(UnityEngine.InputSystem.Mouse.current.position.ReadValue());
+            var mouseWorldPos = sc.Camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             var hitCollider = Physics2D.OverlapPoint(mouseWorldPos, LayerMask.GetMask("Interactable"));
             if (hitCollider != null)
             {

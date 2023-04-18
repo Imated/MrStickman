@@ -355,7 +355,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478534845}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc78b901d5b58be45a46bcbace219c56, type: 3}
   m_Name: 
@@ -813,8 +813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d3fade24be3a34e9a9ada381cd6580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Instance: {fileID: 0}
-  Player: {fileID: 478534845}
+  player: {fileID: 478534845}
   movementSpeed: 1
   currentWeapon: {fileID: 11400000, guid: aedcd8fc663cf824a81892194cbbbdea, type: 2}
 --- !u!1 &1362715888

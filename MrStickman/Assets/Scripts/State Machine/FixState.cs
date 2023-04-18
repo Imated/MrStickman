@@ -1,10 +1,7 @@
+using UnityEngine;
+
 public class FixState : State
 {
-    public FixState(StateController sc) : base(sc)
-    {
-        
-    }
-
     protected override void OnEnter()
     {
         sc.CanBreak = false;
@@ -12,10 +9,8 @@ public class FixState : State
 
     protected override void OnUpdate()
     {
-        if (sc.Input.GetMovementInput() != UnityEngine.Vector2.zero)
-        {
+        if (sc.Input.GetMovementInput() != Vector2.zero)
             sc.ChangeState(sc.MovementState);
-        }
     }
 
     protected override void OnInteract()
