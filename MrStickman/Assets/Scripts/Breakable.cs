@@ -2,6 +2,8 @@
 using UnityEngine;
 public class Breakable : MonoBehaviour
 {
+    public bool IsBroken => _isBroken;
+    
     [SerializeField] protected float shakeDuration;
     [SerializeField] protected Vector3 shakeStrength;
     [SerializeField] protected int shakeVibration;

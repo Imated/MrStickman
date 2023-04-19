@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class MovementState : State
 {
@@ -60,22 +59,7 @@ public class MovementState : State
                 throw new System.ArgumentOutOfRangeException();
         }
     }
-
-    protected override void OnInteract()
-    {
-        if (Sc.InteractableTimer <= 0)
-        {
-            Sc.InteractableTimer = Sc.CurrentWeapon.cooldown;
-            var mouseWorldPos = Sc.Camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            var hitCollider = Physics2D.OverlapPoint(mouseWorldPos, LayerMask.GetMask("Interactable"));
-            if (hitCollider != null)
-            {
-                if (hitCollider.gameObject.TryGetComponent(out Breakable breakable))
-                    breakable.Damage(Sc.CurrentWeapon.damage);
-            }
-        }
-    }
-
+    
     protected override void OnExit()
     {
 

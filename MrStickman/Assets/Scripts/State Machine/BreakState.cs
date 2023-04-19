@@ -6,6 +6,7 @@ public class BreakState : State
     {
         Sc.CanBreak = true;
         AddSubState(Sc.MovementState);
+        AddSubState(Sc.InteractionState);
     }
 
     protected override void OnUpdate()

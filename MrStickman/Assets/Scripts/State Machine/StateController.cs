@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class StateController : MonoBehaviour
 {
-    public State BreakState, FixState, MovementState;
     public GameObject player;
     
     [SerializeField] private float movementSpeed;
@@ -15,6 +13,7 @@ public class StateController : MonoBehaviour
     public PlayerDirection PlayerDirection { get; set; }
     public Camera Camera { get; set; }
     public float InteractableTimer { get; set; }
+    public bool IsInteracting { get; set; }
     public float MovementSpeed 
     {
         get => movementSpeed;
@@ -29,12 +28,18 @@ public class StateController : MonoBehaviour
     public InputManager Input { get; set; }
     
     private State _currentState;
+
+    public State BreakState;
+    public State FixState;
+    public State MovementState;
+    public State InteractionState;
     
     private void Awake()
     {
         BreakState = new BreakState();
         FixState = new FixState();
         MovementState = new MovementState();
+        InteractionState = new InteractionState();
         AssignReferences();
         ChangeState(BreakState);
     }
@@ -51,9 +56,6 @@ public class StateController : MonoBehaviour
     {
         if (_currentState != null)
             _currentState.OnStateUpdate();
-        if(_currentState != null && Mouse.current.leftButton.wasPressedThisFrame)
-            _currentState.OnStateInteract();
-        InteractableTimer -= Time.deltaTime;
     }
 
     private void FixedUpdate()
