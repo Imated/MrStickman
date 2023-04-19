@@ -1,36 +1,64 @@
+    using System.Collections.Generic;
+    using UnityEngine;
+
     public abstract class State
     {
-        protected StateController sc;
+        protected StateController Sc;
+        public State Super;
+        public List<State> SubStates = new List<State>();
 
+        public bool IsSuper() => Super == null;        
+        
         public void OnStateEnter(StateController stateController)
         {
-            sc = stateController;
+            Sc = stateController;
             OnEnter();
         }
-        protected virtual void OnEnter() { }
-        
+
         public void OnStateUpdate()
         {
             OnUpdate();
+            foreach (var state in SubStates)
+                state.OnStateUpdate();
         }
-        protected virtual void OnUpdate() { }
-        
+
         public void OnStateFixedUpdate()
         {
             OnFixedUpdate();
+            foreach (var state in SubStates)
+                state.OnFixedUpdate();
         }
-        protected virtual void OnFixedUpdate() { }
-        
+
         public void OnStateInteract()
         {
             OnInteract();
+            foreach (var state in SubStates)
+                state.OnStateInteract();
         }
-        protected virtual void OnInteract() { }
-        
+
         public void OnStateExit()
         {
             OnExit();
+            foreach (var state in SubStates)
+                state.OnStateExit();
         }
+
+        public void SetSuperState(State state)
+        {
+            Super = state;
+        }
+        
+        public void AddSubState(State state)
+        {
+            state.SetSuperState(this);
+            SubStates.Add(state);
+            state.OnStateEnter(Sc);
+        }
+        
+        protected virtual void OnEnter() { }
+        protected virtual void OnUpdate() { }
+        protected virtual void OnFixedUpdate() { }
+        protected virtual void OnInteract() { }
         protected virtual void OnExit() { }
     }
 

@@ -15,46 +15,46 @@ public class MovementState : State
 
     void UpdatePlayerMovement()
     {
-        var input = sc.Input.GetMovementInput();
-        var h = input.x * sc.MovementSpeed * Time.deltaTime;
+        var input = Sc.Input.GetMovementInput();
+        var h = input.x * Sc.MovementSpeed * Time.deltaTime;
         switch (h)
         {
             case > 0:
-                sc.PlayerState = PlayerState.Walk;
-                sc.PlayerDirection = PlayerDirection.Right;
+                Sc.PlayerState = PlayerState.Walk;
+                Sc.PlayerDirection = PlayerDirection.Right;
                 break;
             case < 0:
-                sc.PlayerState = PlayerState.Walk;
-                sc.PlayerDirection = PlayerDirection.Left;
+                Sc.PlayerState = PlayerState.Walk;
+                Sc.PlayerDirection = PlayerDirection.Left;
                 break;
             case 0:
-                sc.PlayerState = PlayerState.Idle;
+                Sc.PlayerState = PlayerState.Idle;
                 break;
         }
         UpdatePlayerAnimation();
-        sc.Rb.velocity = new Vector2(h * 100, sc.Rb.velocity.y);
+        Sc.Rb.velocity = new Vector2(h * 100, Sc.Rb.velocity.y);
     }
 
     void UpdatePlayerAnimation()
     {
-        switch (sc.PlayerDirection)
+        switch (Sc.PlayerDirection)
         {
             case PlayerDirection.Left:
-                sc.player.transform.localScale = new Vector3(-1, 1, 1);
+                Sc.player.transform.localScale = new Vector3(-1, 1, 1);
                 break;
             case PlayerDirection.Right:
-                sc.player.transform.localScale = Vector3.one;
+                Sc.player.transform.localScale = Vector3.one;
                 break;
             default:
                 throw new System.ArgumentOutOfRangeException();
         }
-        switch (sc.PlayerState)
+        switch (Sc.PlayerState)
         {
             case PlayerState.Idle:
-                sc.Anim.Play("PlayerIdle");
+                Sc.Anim.Play("PlayerIdle");
                 break;
             case PlayerState.Walk:
-                sc.Anim.Play("PlayerWalk");
+                Sc.Anim.Play("PlayerWalk");
                 break;
             default:
                 throw new System.ArgumentOutOfRangeException();
@@ -63,15 +63,15 @@ public class MovementState : State
 
     protected override void OnInteract()
     {
-        if (sc.InteractableTimer <= 0)
+        if (Sc.InteractableTimer <= 0)
         {
-            sc.InteractableTimer = sc.CurrentWeapon.cooldown;
-            var mouseWorldPos = sc.Camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Sc.InteractableTimer = Sc.CurrentWeapon.cooldown;
+            var mouseWorldPos = Sc.Camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             var hitCollider = Physics2D.OverlapPoint(mouseWorldPos, LayerMask.GetMask("Interactable"));
             if (hitCollider != null)
             {
                 if (hitCollider.gameObject.TryGetComponent(out Breakable breakable))
-                    breakable.Damage(sc.CurrentWeapon.damage);
+                    breakable.Damage(Sc.CurrentWeapon.damage);
             }
         }
     }

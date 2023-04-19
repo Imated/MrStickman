@@ -64,6 +64,8 @@ public class StateController : MonoBehaviour
 
     public void ChangeState(State newState)
     {
+        if (!newState.IsSuper())
+            newState = newState.Super;
         if (_currentState != null)
             _currentState.OnStateExit();
         _currentState = newState;

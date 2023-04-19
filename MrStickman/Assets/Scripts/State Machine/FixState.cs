@@ -4,13 +4,13 @@ public class FixState : State
 {
     protected override void OnEnter()
     {
-        sc.CanBreak = false;
+        Sc.CanBreak = false;
     }
 
     protected override void OnUpdate()
     {
-        if (sc.Input.GetMovementInput() != Vector2.zero)
-            sc.ChangeState(sc.MovementState);
+        if (Sc.Input.GetMovementInput() != Vector2.zero)
+            Sc.ChangeState(Sc.MovementState);
     }
 
     protected override void OnInteract()
