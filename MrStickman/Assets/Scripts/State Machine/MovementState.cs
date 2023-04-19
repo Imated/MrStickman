@@ -4,11 +4,12 @@ public class MovementState : State
 {
     protected override void OnEnter()
     {
-        
+
     }
 
     protected override void OnFixedUpdate()
     {
+        
         UpdatePlayerMovement();
     }
 
