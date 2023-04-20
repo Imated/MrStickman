@@ -9,7 +9,6 @@ public class MovementState : State
 
     protected override void OnFixedUpdate()
     {
-        
         UpdatePlayerMovement();
     }
 

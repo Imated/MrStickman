@@ -41,6 +41,7 @@ public class StateController : MonoBehaviour
         get => currentWeapon;
         set => currentWeapon = value;
     }
+
     public bool CanBreak { get; set; }
     public InputManager Input { get; set; }
 
@@ -54,6 +55,8 @@ public class StateController : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += (scene, mode) => AssignReferences();
         BreakState = new BreakState();
         FixState = new FixState();
         MovementState = new MovementState();
@@ -65,36 +68,24 @@ public class StateController : MonoBehaviour
 
     private void AssignReferences()
     {
-        Rb = player.GetComponent<Rigidbody2D>();
-
-
-
-        Input = player.GetComponent<InputManager>();
-
-
-        Anim = player.GetComponent<Animator>();
-
-
-
-
+        if (this == null) // you need this bc unity is weird and gives errors without it
+            return;
+        player = GameObject.Find("Player");
+        Input = GetComponent<InputManager>();
         Camera = Camera.main;
-
+        if (player != null)
+        {
+            Rb = player.GetComponent<Rigidbody2D>();
+            Anim = player.GetComponent<Animator>();
+        }
     }
-
+    
     private void Update()
     {
         if (_currentState != null)
             _currentState.OnStateUpdate();
-        //if (SceneManager.GetActiveScene().buildIndex != 1)
-        //{
-        //    player.gameObject.SetActive(false);
-        //}
-        //else if (SceneManager.GetActiveScene().buildIndex != 1)
-        //{
-        //    player.gameObject.SetActive(true);
-        //}
     }
-
+    
     private void FixedUpdate()
     {
         if (_currentState != null)
