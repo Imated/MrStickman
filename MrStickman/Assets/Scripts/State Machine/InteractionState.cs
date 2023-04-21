@@ -11,8 +11,11 @@ public class InteractionState : State
     protected override void OnUpdate()
     {
         HandleInteraction();
-        //Sc.InteractableTimer -= Time.deltaTime;
-        Debug.Log(Sc.InteractableTimer);
+    }
+
+    protected override void OnFixedUpdate()
+    {
+        Sc.InteractableTimer -= Time.deltaTime;
     }
 
     private void HandleInteraction()

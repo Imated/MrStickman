@@ -10,7 +10,6 @@ public class MovementState : State
     protected override void OnFixedUpdate()
     {
         UpdatePlayerMovement();
-        Sc.InteractableTimer -= Time.deltaTime;
     }
 
     void UpdatePlayerMovement()
