@@ -10,14 +10,13 @@ public class InteractionState : State
 
     protected override void OnUpdate()
     {
-        OnInteract();
-        Sc.InteractableTimer -= Time.deltaTime;
+        HandleInteraction();
+        //Sc.InteractableTimer -= Time.deltaTime;
         Debug.Log(Sc.InteractableTimer);
     }
 
-    protected override void OnInteract()
+    private void HandleInteraction()
     {
-
         if (Sc.InteractableTimer <= 0 && Mouse.current.leftButton.wasPressedThisFrame)
         {
             Sc.InteractableTimer = Sc.CurrentWeapon.cooldown;
@@ -40,11 +39,6 @@ public class InteractionState : State
                 Sc.IsInteracting = false;
             }
         }
-    }
-
-    private void HandleInteraction()
-    {
-        
     }
 
     protected override void OnExit()
