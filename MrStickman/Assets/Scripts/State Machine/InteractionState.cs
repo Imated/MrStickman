@@ -5,17 +5,19 @@ public class InteractionState : State
 {
     protected override void OnEnter()
     {
-        
+
     }
 
     protected override void OnUpdate()
     {
-        HandleInteraction();
+        OnInteract();
         Sc.InteractableTimer -= Time.deltaTime;
+        Debug.Log(Sc.InteractableTimer);
     }
 
-    private void HandleInteraction()
+    protected override void OnInteract()
     {
+
         if (Sc.InteractableTimer <= 0 && Mouse.current.leftButton.wasPressedThisFrame)
         {
             Sc.InteractableTimer = Sc.CurrentWeapon.cooldown;
@@ -26,7 +28,7 @@ public class InteractionState : State
                 Sc.IsInteracting = true;
                 if (hitCollider.gameObject.TryGetComponent(out Breakable breakable))
                 {
-                    if(breakable.IsBroken)
+                    if (breakable.IsBroken)
                     {
                         Sc.IsInteracting = false;
                         return;
@@ -38,6 +40,11 @@ public class InteractionState : State
                 Sc.IsInteracting = false;
             }
         }
+    }
+
+    private void HandleInteraction()
+    {
+        
     }
 
     protected override void OnExit()
