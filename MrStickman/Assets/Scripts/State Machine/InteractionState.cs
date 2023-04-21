@@ -11,13 +11,9 @@ public class InteractionState : State
     protected override void OnUpdate()
     {
         HandleInteraction();
-    }
-
-    protected override void OnFixedUpdate()
-    {
         Sc.InteractableTimer -= Time.deltaTime;
     }
-
+    
     private void HandleInteraction()
     {
         if (Sc.InteractableTimer <= 0 && Mouse.current.leftButton.wasPressedThisFrame)

@@ -25,7 +25,7 @@ public abstract class State
     {
         OnFixedUpdate();
         foreach (var state in SubStates)
-            state.OnFixedUpdate();
+            state.OnStateFixedUpdate();
     }
 
     public void OnStateInteract()
