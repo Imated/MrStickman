@@ -1,3 +1,5 @@
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 public class MainMenuState : State
 {
@@ -6,22 +8,16 @@ public class MainMenuState : State
         Sc.CanBreak = false;
         Sc.PlayButton.onClick.AddListener(PlayClicked);
     }
-    protected override void OnUpdate()
-    {
 
-    }
-
-    void PlayClicked()
+    private void PlayClicked()
     {
         SceneManager.LoadScene(1, LoadSceneMode.Single);
         Sc.ChangeState(Sc.BreakState);
     }
-    protected override void OnInteract()
+    
+    protected override void OnUpdate()
     {
-
-    }
-    protected override void OnExit()
-    {
-
+        if (SystemInfo.deviceType == DeviceType.Desktop)
+            EventSystem.current.SetSelectedGameObject(null);
     }
 }
