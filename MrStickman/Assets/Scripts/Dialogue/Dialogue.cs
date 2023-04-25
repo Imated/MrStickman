@@ -5,7 +5,6 @@ using UnityEngine;
 public class Dialogue : ScriptableObject
 {
     public Dialogue nextDialogue;
-    public string id;
     public string dialogueName;
     public Sprite icon;
     [TextArea] public string dialogueText;

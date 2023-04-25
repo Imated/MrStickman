@@ -24,7 +24,7 @@ public class DialogueManager : Singleton<DialogueManager>
     protected override void Awake()
     {
         base.Awake();
-        StartDialogue(dialogues[0].id);
+        StartDialogue(dialogues[0].name);
     }
 
     private void ShowDialogue()
@@ -45,7 +45,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void StartDialogue(string id)
     {
-        var dialogue = dialogues.Find((d) => d.id == id);
+        var dialogue = dialogues.Find((d) => d.name == id);
         if (!dialogue.isChoice)
         {
             choicesBox.SetActive(false);
@@ -64,7 +64,7 @@ public class DialogueManager : Singleton<DialogueManager>
                 choiceObject.GetComponentInChildren<TMP_Text>().text = choice;
                 choiceObject.GetComponent<Button>().onClick.AddListener(() =>
                 {
-                    StartDialogue(nextDialogue.id);
+                    StartDialogue(nextDialogue.name);
                     foreach (var c in choicesBox.transform)
                         Destroy(c as GameObject);
                 });
@@ -79,7 +79,7 @@ public class DialogueManager : Singleton<DialogueManager>
         if (_currentDialogue != null && !_currentDialogue.isChoice && Mouse.current.leftButton.wasPressedThisFrame)
         {
             if(_currentDialogue.nextDialogue != null)
-                StartDialogue(_currentDialogue.nextDialogue.id);
+                StartDialogue(_currentDialogue.nextDialogue.name);
             else
                 HideDialogue();
         }
