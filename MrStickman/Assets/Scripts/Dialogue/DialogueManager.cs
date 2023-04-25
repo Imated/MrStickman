@@ -76,11 +76,11 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void Update()
     {
-        if (_currentDialogue != null && Mouse.current.leftButton.wasPressedThisFrame)
+        if (_currentDialogue != null && !_currentDialogue.isChoice && Mouse.current.leftButton.wasPressedThisFrame)
         {
-            if(!_currentDialogue.isChoice && _currentDialogue.nextDialogue != null)
+            if(_currentDialogue.nextDialogue != null)
                 StartDialogue(_currentDialogue.nextDialogue.id);
-            else if(_currentDialogue.nextDialogue == null)
+            else
                 HideDialogue();
         }
     }

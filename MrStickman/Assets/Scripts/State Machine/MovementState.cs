@@ -15,7 +15,7 @@ public class MovementState : State
     void UpdatePlayerMovement()
     {
         var input = Sc.Input.GetMovementInput();
-        var h = input.x * Sc.MovementSpeed * Time.deltaTime;
+        var h = input.x * Sc.MovementSpeed * Time.deltaTime * 100;
         switch (h)
         {
             case > 0:
@@ -31,7 +31,7 @@ public class MovementState : State
                 break;
         }
         UpdatePlayerAnimation();
-        Sc.Rb.velocity = new Vector2(h * 100, Sc.Rb.velocity.y);
+        Sc.Rb.velocity = new Vector2(h, Sc.Rb.velocity.y);
     }
 
     void UpdatePlayerAnimation()

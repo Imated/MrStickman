@@ -1291,7 +1291,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b4c6e9a3d042d34baeaa7c477c7fbdf, type: 2}
   - {fileID: 11400000, guid: 1d78e5d753bd8c443817138cde0df5c4, type: 2}
   - {fileID: 11400000, guid: ec7345df271b28d4ab9298a1fbef84ef, type: 2}
-  fadeDuration: 0.25
+  fadeDuration: 0.15
   dialogueBox: {fileID: 850875027}
   dialogueName: {fileID: 1825073992}
   dialogueText: {fileID: 1984194833}
