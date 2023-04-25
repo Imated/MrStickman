@@ -1,8 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -49,27 +49,29 @@ public class DialogueManager : Singleton<DialogueManager>
         if (!dialogue.isChoice)
         {
             choicesBox.SetActive(false);
-            dialogueName.text = dialogue.dialogueName;
             dialogueText.text = dialogue.dialogueText;
-            dialogueIcon.sprite = dialogue.icon;
         }
         else
         {
             choicesBox.SetActive(true);
             for (var i = 0; i < dialogue.choices.Count; i++)
             {
-                var choice = dialogue.choices[i];
-                var nextDialogue = dialogue.choiceDialogues[i];
+                var choiceText = dialogue.choices.ElementAt(i).Key;
+                var choiceDialogue = dialogue.choices.ElementAt(i).Value;
+                
                 var choiceObject = Instantiate(choicePrefab, Vector3.zero, Quaternion.identity, choicesBox.transform);
-                choiceObject.GetComponentInChildren<TMP_Text>().text = choice;
+                choiceObject.GetComponentInChildren<TMP_Text>().text = choiceText;
                 choiceObject.GetComponent<Button>().onClick.AddListener(() =>
                 {
-                    StartDialogue(nextDialogue.name);
+                    StartDialogue(choiceDialogue.name);
                     foreach (var c in choicesBox.transform)
                         Destroy(c as GameObject);
                 });
             }
         }
+        
+        dialogueName.text = dialogue.dialogueName;
+        dialogueIcon.sprite = dialogue.icon;
         _currentDialogue = dialogue;
         ShowDialogue();
     }

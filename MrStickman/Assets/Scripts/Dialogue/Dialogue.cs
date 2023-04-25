@@ -1,15 +1,15 @@
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "New Dialogue", fileName = "New Dialogue Item")]
-public class Dialogue : ScriptableObject
+public class Dialogue : SerializedScriptableObject
 {
-    public Dialogue nextDialogue;
+    [HideIf("isChoice")] public Dialogue nextDialogue;
     public string dialogueName;
     public Sprite icon;
-    [TextArea] public string dialogueText;
-    [Space]
+    [TextArea, HideIf("isChoice")] public string dialogueText;
+    [PropertySpace]
     public bool isChoice;
-    public List<string> choices;
-    public List<Dialogue> choiceDialogues;
+    [ShowInInspector, ShowIf("isChoice")] public Dictionary<string, Dialogue> choices;
 }

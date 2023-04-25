@@ -12,15 +12,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8185aa0c85411294584584339e82e518, type: 3}
   m_Name: Choice Test 2
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: ec7345df271b28d4ab9298a1fbef84ef, type: 2}
+    - {fileID: 11400000, guid: 1d78e5d753bd8c443817138cde0df5c4, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: choices
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Dialogue,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Jerry
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Mr. Stickman
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   nextDialogue: {fileID: 0}
-  id: choice2
-  dialogueName: Jerry
+  dialogueName: Mr. Stickman
   icon: {fileID: 21300000, guid: 8220d94c722ec684aa8231f1a0568ab5, type: 3}
   dialogueText: 
   isChoice: 1
-  choices:
-  - Jerry
-  - Mr. Stickman
-  choiceDialogues:
-  - {fileID: 11400000, guid: ec7345df271b28d4ab9298a1fbef84ef, type: 2}
-  - {fileID: 11400000, guid: 1d78e5d753bd8c443817138cde0df5c4, type: 2}
