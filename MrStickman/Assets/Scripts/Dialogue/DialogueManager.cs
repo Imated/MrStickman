@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
@@ -49,7 +50,7 @@ public class DialogueManager : Singleton<DialogueManager>
         if (!dialogue.isChoice)
         {
             choicesBox.SetActive(false);
-            dialogueText.text = dialogue.dialogueText;
+            StartCoroutine(TypeDialogue(dialogueText, dialogue.dialogueText));
         }
         else
         {
@@ -60,7 +61,7 @@ public class DialogueManager : Singleton<DialogueManager>
                 var choiceDialogue = dialogue.choices.ElementAt(i).Value;
                 
                 var choiceObject = Instantiate(choicePrefab, Vector3.zero, Quaternion.identity, choicesBox.transform);
-                choiceObject.GetComponentInChildren<TMP_Text>().text = choiceText;
+                StartCoroutine(TypeDialogue(choiceObject.GetComponentInChildren<TMP_Text>(), choiceText));
                 choiceObject.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     StartDialogue(choiceDialogue.name);
@@ -84,6 +85,16 @@ public class DialogueManager : Singleton<DialogueManager>
                 StartDialogue(_currentDialogue.nextDialogue.name);
             else
                 HideDialogue();
+        }
+    }
+
+    private IEnumerator TypeDialogue(TMP_Text textElement, string text)
+    {
+        textElement.text = "";
+        foreach (var i in text)
+        {
+            textElement.text += i;
+            yield return new WaitForSeconds(0.025f);
         }
     }
 }
