@@ -6,4 +6,9 @@ public class Achievement : ScriptableObject
     public string title;
     [TextArea] public string description;
     public Sprite icon;
+
+    public override string ToString()
+    {
+        return $"{title}";
+    }
 }

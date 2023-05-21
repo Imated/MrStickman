@@ -292,6 +292,26 @@ MonoBehaviour:
   buttonType: 2
   newValue: 1.05
   duration: 0.25
+--- !u!1 &76719955 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7888863647980200969, guid: a5877d9350534614db9ac0daa32f3829, type: 3}
+  m_PrefabInstance: {fileID: 331490519}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &76719956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76719955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ff33131a94676459cb874cef4102f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
+  achievements:
+  - {fileID: 11400000, guid: 9351e103e58cbb24a840a265c7db5b86, type: 2}
 --- !u!1001 &331490519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -732,7 +752,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 119
 --- !u!114 &1572743582
 MonoBehaviour:
   m_ObjectHideFlags: 0
