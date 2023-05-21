@@ -21,7 +21,7 @@ public class Breakable : MonoBehaviour
 
     public void Damage(float damageLoss)
     {
-        if(_isBroken)
+        if (_isBroken)
             return;
         _health -= damageLoss;
         transform.DOShakePosition(shakeDuration, shakeStrength, shakeVibration, 180F);
@@ -30,6 +30,8 @@ public class Breakable : MonoBehaviour
             _spriteRenderer.sprite = brokenSprite;
             _health = 100;
             _isBroken = true;
+            
+            AchievementManager.Instance.UnlockAchievement("New");
         }
     }
 }

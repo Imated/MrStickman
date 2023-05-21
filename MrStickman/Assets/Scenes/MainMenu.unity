@@ -310,8 +310,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  achievements:
-  - {fileID: 11400000, guid: 9351e103e58cbb24a840a265c7db5b86, type: 2}
+  achievements: []
+  instance: {fileID: 0}
 --- !u!1001 &331490519
 PrefabInstance:
   m_ObjectHideFlags: 0

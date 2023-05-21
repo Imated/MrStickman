@@ -6,13 +6,25 @@ using UnityEngine.Events;
 
 public class AchievementManager : Singleton<AchievementManager>
 {
-    [SerializeField] private List<Achievement> achievements = new List<Achievement>();
-    public static AchievementManager instance;
+    public List<Achievement> achievements = new List<Achievement>();
+    public AchievementManager instance;
     public List<Achievement> Achievements
     {
         get => achievements;
     }
     public Action<Achievement> OnAchievementUnlocked;
+
+    private void Start()
+    {
+        instance = this;
+    }
+
+    //public void GetAchievement(int)
+    //{
+    //    achievements[achIndex].ToString();
+    //    return;
+    //}
+
 
     public void UnlockAchievement(string title)
     {
