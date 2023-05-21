@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: New
   m_EditorClassIdentifier: 
   title: New
-  description: Test Achievement!!!
+  description: Test Achievement
   icon: {fileID: 21300000, guid: 5c07a758b5d034e41a11b3b34fac9e8c, type: 3}
