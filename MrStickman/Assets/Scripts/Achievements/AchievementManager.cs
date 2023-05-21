@@ -1,30 +1,20 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class AchievementManager : Singleton<AchievementManager>
 {
-    public List<Achievement> achievements = new List<Achievement>();
-    public AchievementManager instance;
-    public List<Achievement> Achievements
-    {
-        get => achievements;
-    }
+    [SerializeField] private List<Achievement> achievements = new List<Achievement>();
+    public List<Achievement> Achievements => achievements;
+
     public Action<Achievement> OnAchievementUnlocked;
 
-    private void Start()
+    private void Update()
     {
-        instance = this;
+        if(Keyboard.current.pKey.wasPressedThisFrame)
+            SavingSystem.ClearSave();
     }
-
-    //public void GetAchievement(int)
-    //{
-    //    achievements[achIndex].ToString();
-    //    return;
-    //}
-
 
     public void UnlockAchievement(string title)
     {
@@ -33,14 +23,8 @@ public class AchievementManager : Singleton<AchievementManager>
         {
             Debug.Log("Achievement unlocked: " + achievementToUnlock.title);
             OnAchievementUnlocked?.Invoke(achievementToUnlock);
-            //Invoke(achievementToUnlock);
             SavingSystem.SetBool($"{achievementToUnlock.title}_unlocked", true);
         }
-    }
-
-    private void Invoke(Achievement achievementToUnlock)
-    {
-        throw new NotImplementedException();
     }
 
     public bool IsAchievementUnlocked(string title)
