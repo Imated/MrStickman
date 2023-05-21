@@ -31,7 +31,7 @@ public class Breakable : MonoBehaviour
             _health = 100;
             _isBroken = true;
             
-            AchievementManager.Instance.UnlockAchievement("New");
+            AchievementManager.Instance.UnlockAchievement("New2");
         }
     }
 }
