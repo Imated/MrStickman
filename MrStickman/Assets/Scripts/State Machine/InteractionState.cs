@@ -18,7 +18,7 @@ public class InteractionState : State
     {
         if (Sc.InteractableTimer <= 0 && Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Sc.InteractableTimer = Sc.CurrentWeapon.cooldown;
+            Sc.InteractableTimer = Sc.CurrentTool.cooldown;
             var mouseWorldPos = Sc.Camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             var hitCollider = Physics2D.OverlapPoint(mouseWorldPos, LayerMask.GetMask("Interactable"));
             if (hitCollider != null && !Sc.IsInteracting)
@@ -31,7 +31,7 @@ public class InteractionState : State
                         Sc.IsInteracting = false;
                         return;
                     }
-                    breakable.Damage(Sc.CurrentWeapon.damage);
+                    breakable.Damage(Sc.CurrentTool.damage);
                 }
 
                 Super.OnStateInteract();

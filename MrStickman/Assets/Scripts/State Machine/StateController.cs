@@ -10,7 +10,7 @@ public class StateController : MonoBehaviour
     private Button _playButton, _achievementsButton, _quitButton;
 
     [SerializeField] private float movementSpeed;
-    [SerializeField] private Weapon currentWeapon;
+    [SerializeField] private Tool currentTool;
 
     public Button PlayButton
     {
@@ -36,10 +36,10 @@ public class StateController : MonoBehaviour
         get => movementSpeed;
         set => movementSpeed = value;
     }
-    public Weapon CurrentWeapon
+    public Tool CurrentTool
     {
-        get => currentWeapon;
-        set => currentWeapon = value;
+        get => currentTool;
+        set => currentTool = value;
     }
 
     public bool CanBreak { get; set; }
