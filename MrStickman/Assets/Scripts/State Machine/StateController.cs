@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class StateController : MonoBehaviour
+public class StateController : Singleton<StateController>
 {
     public GameObject player;
 
@@ -53,8 +53,9 @@ public class StateController : MonoBehaviour
     public State InteractionState;
     public State MainMenuState;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += (scene, mode) => AssignReferences();
         BreakState = new BreakState();
